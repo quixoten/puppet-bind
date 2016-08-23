@@ -44,7 +44,8 @@
 #  $check_names:
 #   Array of check-names strings. Example: [ 'master ignore' ]. Default: empty
 #  $extra_options:
-#   Hash for any additional options that must go in the 'options' declaration. Default: empty
+#   Hash for any additional options that must go in the 'options' declaration.
+#   Default: empty
 #  $dnssec_enable:
 #   Enable DNSSEC support. Default: 'yes'
 #  $dnssec_validation:
@@ -53,6 +54,9 @@
 #   DNSSEC lookaside type. Default: 'auto'
 #  $zones:
 #   Hash of managed zones and their configuration. The key is the zone name
+#   and the value is an array of config lines. Default: empty
+#  $tsig:
+#   Hash of managed tsig keys and their configuration. The key is the tsig keys name
 #   and the value is an array of config lines. Default: empty
 #  $includes:
 #   Array of absolute paths to named.conf include files. Default: empty
@@ -74,6 +78,12 @@
 #        'type slave',
 #        'file "slaves/example.org"',
 #        'masters { mymasters; }',
+#      ],
+#    }
+#    keys                 => { 
+#      'example.org-tsig' => [
+#        'algorithm hmac-md5',
+#        'secret "aaabbbcccddd"',
 #      ],
 #    }
 #  }
@@ -107,15 +117,15 @@ define bind::server::conf (
   $dnssec_validation      = 'yes',
   $dnssec_lookaside       = 'auto',
   $zones                  = {},
+  $keys                   = {},
   $includes               = [],
   $views                  = {},
 ) {
 
   # Everything is inside a single template
   file { $title:
-    notify  => Class['bind::service'],
+    notify  => Class['::bind::service'],
     content => template('bind/named.conf.erb'),
   }
 
 }
-
