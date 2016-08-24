@@ -89,7 +89,6 @@
 #  }
 #
 define bind::server::conf (
-  $statistics_channels,
   $acls                   = {},
   $masters                = {},
   $listen_on_port         = '53',
@@ -105,6 +104,7 @@ define bind::server::conf (
   $dump_file              = '/var/named/data/cache_dump.db',
   $statistics_file        = '/var/named/data/named_stats.txt',
   $memstatistics_file     = '/var/named/data/named_mem_stats.txt',
+  $statistics_channels    = '',
   $allow_query            = [ 'localhost' ],
   $allow_query_cache      = [],
   $recursion              = 'yes',
