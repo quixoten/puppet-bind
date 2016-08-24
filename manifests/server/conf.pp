@@ -80,7 +80,7 @@
 #        'masters { mymasters; }',
 #      ],
 #    }
-#    keys                 => { 
+#    keys                 => {
 #      'example.org-tsig' => [
 #        'algorithm hmac-md5',
 #        'secret "aaabbbcccddd"',
@@ -89,6 +89,7 @@
 #  }
 #
 define bind::server::conf (
+  $statistics_channels,
   $acls                   = {},
   $masters                = {},
   $listen_on_port         = '53',

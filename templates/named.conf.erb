@@ -181,3 +181,8 @@ include "<%= filename %>";
 <% end -%>
 <% end -%>
 
+<% if !@statistics_channels.empty? -%>
+statistics-channels {
+  <%= @statistics_channels %>;
+};
+<% end -%>
