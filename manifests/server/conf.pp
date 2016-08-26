@@ -105,6 +105,8 @@ define bind::server::conf (
   $statistics_file        = '/var/named/data/named_stats.txt',
   $memstatistics_file     = '/var/named/data/named_mem_stats.txt',
   $statistics_channels    = undef,
+  $rfc1912_zones_file     = '/etc/named.rfc1912.zones',
+  $root_servers_file      = 'named.ca',
   $allow_query            = [ 'localhost' ],
   $allow_query_cache      = [],
   $recursion              = 'yes',
